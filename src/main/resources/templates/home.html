@@ -34,63 +34,49 @@
 </head>
 <body>
 
-    <div class="logo-container mb-0 p-1 d-flex justify-content-between">
-        <span class="logo mt-2">Tech House</span>
-        <span class="inventario fs-2">Inventory</span>
-        <span class="mt-2">logout</span>
+<div class="logo-container mb-0 p-2 d-flex justify-content-between">
+    <span class="logo mt-2">Tech House</span>
+    <span class="inventario fs-2">Inventory</span>
+    <span class="mt-2">logout</span>
+</div>
+
+<nav class="navbar bg-body-tertiary d-flex justify-content-around mb-2 p-2 ">
+    <a href="#" class="nav-item mt-1 mb-1"><button class="btn btn-outline-secondary btn-sm">Todos os Produtos</button></a>
+    <a href="#" class="nav-item mt-1 mb-1"><button class="btn btn-outline-secondary btn-sm">Novo Produto</button></a>
+    <a href="#" class="nav-item mt-1 mb-1"><button class="btn btn-outline-secondary btn-sm">Produtos em Falta</button></a>
+    <a href="#" class="nav-item mt-1 mb-1"><button class="btn btn-outline-secondary btn-sm">Vendas</button></a>
+    <a href="#" class="nav-item mt-1 mb-1"><button class="btn btn-outline-secondary btn-sm">Reestoque</button></a>
+</nav>
+
+<div class="container">
+    <div class="p-1 bg-body-secondary rounded-3 d-flex justify-content-center mb-2">
+        <h1 class="display-5">Produtos em Estoque</h1>
     </div>
 
-    <nav class="navbar bg-body-tertiary d-flex justify-content-around mb-2 p-1 ">
-        <a href="#" class="nav-item mt-1"><button class="btn btn-outline-secondary btn-sm">Todos os Produtos</button></a>
-        <a href="#" class="nav-item mt-1"><button class="btn btn-outline-secondary btn-sm">Novo Produto</button></a>
-        <a href="#" class="nav-item mt-1"><button class="btn btn-outline-secondary btn-sm">Produtos em Falta</button></a>
-        <a href="#" class="nav-item mt-1"><button class="btn btn-outline-secondary btn-sm">Vendas</button></a>
-        <a href="#" class="nav-item mt-1"><button class="btn btn-outline-secondary btn-sm">Reestoque</button></a>
-    </nav>
-
-    <div class="container">
-        <div class="p-1 bg-body-secondary rounded-3 d-flex justify-content-center mb-2">
-            <h1 class="display-5">Produtos em Estoque</h1>
-        </div>
-
-        <div class="table-responsive">
-            <table class="table table-bordered border-black table-hover">
-                <thead class="table-dark border-secondary">
-                    <tr class="text-center">
-                        <th scope="col">Id</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Preço</th>
-                        <th scope="col">Quantidade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Thornton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry the Bird</td>
-                        <td>@twitter</td>
-                        <td>Thornton</td>
-                        <td>Thornton</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
+    <div class="table-responsive">
+        <table class="table table-bordered border-black table-hover">
+            <thead class="table-dark border-secondary">
+            <tr class="text-center">
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Quantidade</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="produto : ${produtos}" class="text-center">
+                    <th th:text="${produto.id}" scope="row">id</th>
+                    <td th:text="${produto.nome}">Nome</td>
+                    <td th:text="${produto.tipo.toString}">Tipo</td>
+                    <td>R$ <span th:text="${produto.preco}">preço</span></td>
+                    <td th:text="${produto.quantidadeEstoque}">Quantidade</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+
+</div>
 
 </body>
 </html>
