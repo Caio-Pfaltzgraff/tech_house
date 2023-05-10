@@ -1,5 +1,6 @@
 package br.com.caioprojects.TechHouse.model.produto;
 
+import br.com.caioprojects.TechHouse.dto.DadosCadastroProduto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,4 +34,12 @@ public class Produto {
     @Column(name = "tipo_do_produto")
     private TipoProduto tipo;
 
+    public Produto(DadosCadastroProduto dados) {
+        this.nome = dados.nome();
+        this.preco = dados.preco();
+        this.quantidadeEstoque = 0;
+        this.quantidadeMinima = Integer.parseInt(dados.quantidadeMinima());
+        this.quantidadeMaxima = Integer.parseInt(dados.quantidadeMaxima());
+        this.tipo = dados.tipo();
+    }
 }
