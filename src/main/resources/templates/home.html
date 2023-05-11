@@ -25,7 +25,7 @@
                 <tr th:each="produto : ${produtos}" class="text-center">
                     <th th:text="${produto.id}" scope="row">id</th>
                     <td th:text="${produto.nome}">Nome</td>
-                    <td th:text="${produto.tipo.toString}">Tipo</td>
+                    <td th:text="${produto.tipo.getDescricao()}">Tipo</td>
                     <td th:text="'R$ ' + ${#numbers.formatDecimal(produto.preco,3,'POINT',2,'COMMA')}">preço</td>
                     <td th:text="${produto.quantidadeEstoque}">Quantidade</td>
                 </tr>

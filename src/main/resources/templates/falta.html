@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{base :: head('Produtos em falta')}"></head>
+<body>
+
+<header th:replace="~{base :: header}"></header>
+
+<div class="container">
+  <div class="p-1 bg-body-secondary rounded-3 d-flex justify-content-center mb-2">
+    <h1 class="display-5" th:text="'Produtos em falta: ' + ${produtos.size()}">Produtos em falta</h1>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered border-black table-hover">
+      <thead class="table-dark border-secondary">
+      <tr class="text-center">
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Quantidade mínima</th>
+        <th scope="col">Quantidade em estoque</th>
+        <th scope="col">MÍN a Comprar</th>
+        <th scope="col">MÁX a Comprar</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="produto : ${produtos}" class="text-center">
+        <th th:text="${produto.id}" scope="row">id</th>
+        <td th:text="${produto.nome}">Nome</td>
+        <td th:text="${produto.quantidadeMinima}">Quantidade Minima</td>
+        <td th:text="${produto.quantidadeEstoque}">Quantidade em Estoque</td>
+        <td th:text="${produto.minComprar}">Mínimo a comprar</td>
+        <td th:text="${produto.maxComprar}">Máximo a comprar</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+</body>
+</html>

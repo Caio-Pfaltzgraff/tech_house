@@ -1,5 +1,6 @@
 package br.com.caioprojects.TechHouse.controller;
 
+import br.com.caioprojects.TechHouse.dto.DadosProdutosEmFalta;
 import br.com.caioprojects.TechHouse.dto.DadosListagemProdutos;
 import br.com.caioprojects.TechHouse.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,17 @@ public class HomeController {
     private ProdutoRepository produtoRepository;
 
     @GetMapping
-    public String home(Model model) {
+    public String todosOsProdutos(Model model) {
         List<DadosListagemProdutos> produtos = produtoRepository.findAll().stream().map(DadosListagemProdutos::new).toList();
         model.addAttribute("produtos", produtos);
         return "home";
+    }
+
+    @GetMapping("/produtos-em-falta")
+    public String produtosEmFalta(Model model) {
+        List<DadosProdutosEmFalta> produtos = produtoRepository.findAllByQuantidadeEstoqueLessThanQuantidadeMinima().stream().map(DadosProdutosEmFalta::new).toList();
+        model.addAttribute("produtos", produtos);
+        return "falta";
     }
 
 }
