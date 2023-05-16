@@ -1,4 +1,4 @@
-package br.com.caioprojects.TechHouse.dto;
+package br.com.caioprojects.TechHouse.dto.produto;
 
 import br.com.caioprojects.TechHouse.model.produto.Produto;
 

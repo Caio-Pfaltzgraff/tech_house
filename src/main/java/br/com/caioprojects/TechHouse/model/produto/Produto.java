@@ -1,6 +1,6 @@
 package br.com.caioprojects.TechHouse.model.produto;
 
-import br.com.caioprojects.TechHouse.dto.DadosCadastroProduto;
+import br.com.caioprojects.TechHouse.dto.produto.DadosCadastroProduto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,4 +42,9 @@ public class Produto {
         this.quantidadeMaxima = Integer.parseInt(dados.quantidadeMaxima());
         this.tipo = dados.tipo();
     }
+
+    public void adicionaEstoque(Integer quantidade) {
+        this.quantidadeEstoque += quantidade;
+    }
+
 }
