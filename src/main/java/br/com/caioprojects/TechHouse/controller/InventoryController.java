@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/home")
-public class HomeController {
+@RequestMapping("/inventory")
+public class InventoryController {
 
     @Autowired
     private ProdutoRepository produtoRepository;
@@ -22,7 +22,7 @@ public class HomeController {
     public String todosOsProdutos(Model model) {
         List<DadosListagemProdutos> produtos = produtoRepository.findAll().stream().map(DadosListagemProdutos::new).toList();
         model.addAttribute("produtos", produtos);
-        return "home";
+        return "inventory";
     }
 
     @GetMapping("/produtos-em-falta")

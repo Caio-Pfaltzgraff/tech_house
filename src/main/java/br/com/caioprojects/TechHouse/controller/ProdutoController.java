@@ -4,6 +4,8 @@ import br.com.caioprojects.TechHouse.dto.DadosCadastroProduto;
 import br.com.caioprojects.TechHouse.model.produto.Produto;
 import br.com.caioprojects.TechHouse.model.produto.TipoProduto;
 import br.com.caioprojects.TechHouse.repository.ProdutoRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 @Controller
 @RequestMapping("/produto")
@@ -31,10 +35,18 @@ public class ProdutoController {
 
     @PostMapping("novo")
     public String novo(@Valid DadosCadastroProduto dados) {
-        Produto produto = new Produto(dados);
-        produtoRepository.save(produto);
+        produtoRepository.save(new Produto(dados));
 
-        return "redirect:/home";
+        return "redirect:/inventory";
+    }
+
+    @GetMapping("/reestoque")
+    public String reestoque(Model model) {
+        var produtos = produtoRepository.findAll();
+        Collections.sort(produtos, Comparator.comparing(Produto::getNome));
+        model.addAttribute("produtos", produtos);
+
+        return "produto/formReestoque";
     }
 
 
