@@ -1,21 +1,20 @@
-package br.com.caioprojects.TechHouse.model.entrada;
+package br.com.caioprojects.TechHouse.domain.movimento;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Embeddable
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-public class ItemEntradaId {
+public class ItemMovimentoId {
 
-    @Column(name = "numero_entrada")
-    private Long numeroEntrada;
+    @Column(name = "numero_movimento")
+    private @Setter Long numeroMovimento;
 
     @Column(name = "id_produto")
     private Long idProduto;

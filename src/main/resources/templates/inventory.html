@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://thymeleaf.org">
 <head th:replace="~{base :: head('home')}"></head>
 <body>
 
@@ -14,20 +14,20 @@
         <table class="table table-bordered border-black table-hover">
             <thead class="table-dark border-secondary">
             <tr class="text-center">
-                <th scope="col">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Tipo</th>
                 <th scope="col">Preço</th>
                 <th scope="col">Quantidade</th>
+                <th scope="col">Ação</th>
             </tr>
             </thead>
             <tbody>
                 <tr th:each="produto : ${produtos}" class="text-center">
-                    <th th:text="${produto.id}" scope="row">id</th>
                     <td th:text="${produto.nome}">Nome</td>
                     <td th:text="${produto.tipo.getDescricao()}">Tipo</td>
                     <td th:text="'R$ ' + ${#numbers.formatDecimal(produto.preco,3,'POINT',2,'COMMA')}">preço</td>
                     <td th:text="${produto.quantidadeEstoque}">Quantidade</td>
+                    <td><button class="btn btn-warning btn-sm">Editar</button> <button class="btn btn-secondary btn-sm">Excluir</button></td>
                 </tr>
             </tbody>
         </table>

@@ -1,6 +1,6 @@
-package br.com.caioprojects.TechHouse.dto.produto;
+package br.com.caioprojects.TechHouse.domain.produto;
 
-import br.com.caioprojects.TechHouse.model.produto.Produto;
+import br.com.caioprojects.TechHouse.domain.produto.Produto;
 
 public record DadosProdutosEmFalta(Long id, String nome, int quantidadeEstoque, int quantidadeMinima, int minComprar, int maxComprar) {
     public DadosProdutosEmFalta(Produto produto) {

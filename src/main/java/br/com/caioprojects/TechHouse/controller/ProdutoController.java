@@ -1,9 +1,9 @@
 package br.com.caioprojects.TechHouse.controller;
 
-import br.com.caioprojects.TechHouse.dto.produto.DadosCadastroProduto;
-import br.com.caioprojects.TechHouse.model.produto.Produto;
-import br.com.caioprojects.TechHouse.model.produto.TipoProduto;
-import br.com.caioprojects.TechHouse.repository.ProdutoRepository;
+import br.com.caioprojects.TechHouse.domain.produto.DadosCadastroProduto;
+import br.com.caioprojects.TechHouse.domain.produto.Produto;
+import br.com.caioprojects.TechHouse.domain.produto.TipoProduto;
+import br.com.caioprojects.TechHouse.domain.produto.ProdutoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

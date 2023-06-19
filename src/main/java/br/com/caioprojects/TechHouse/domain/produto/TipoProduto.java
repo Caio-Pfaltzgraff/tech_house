@@ -1,4 +1,4 @@
-package br.com.caioprojects.TechHouse.model.produto;
+package br.com.caioprojects.TechHouse.domain.produto;
 
 public enum TipoProduto {
 

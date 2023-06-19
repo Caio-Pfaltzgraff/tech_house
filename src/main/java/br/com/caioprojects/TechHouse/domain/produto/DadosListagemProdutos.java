@@ -1,7 +1,7 @@
-package br.com.caioprojects.TechHouse.dto.produto;
+package br.com.caioprojects.TechHouse.domain.produto;
 
-import br.com.caioprojects.TechHouse.model.produto.Produto;
-import br.com.caioprojects.TechHouse.model.produto.TipoProduto;
+import br.com.caioprojects.TechHouse.domain.produto.Produto;
+import br.com.caioprojects.TechHouse.domain.produto.TipoProduto;
 
 import java.math.BigDecimal;
 

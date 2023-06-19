@@ -1,6 +1,5 @@
-package br.com.caioprojects.TechHouse.model.produto;
+package br.com.caioprojects.TechHouse.domain.produto;
 
-import br.com.caioprojects.TechHouse.dto.produto.DadosCadastroProduto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -47,4 +46,7 @@ public class Produto {
         this.quantidadeEstoque += quantidade;
     }
 
+    public void saidaEstoque(Integer quantidade) {
+        this.quantidadeEstoque -= quantidade;
+    }
 }

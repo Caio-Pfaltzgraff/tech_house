@@ -1,11 +1,10 @@
-package br.com.caioprojects.TechHouse.repository;
+package br.com.caioprojects.TechHouse.domain.produto;
 
-import br.com.caioprojects.TechHouse.model.produto.Produto;
+import br.com.caioprojects.TechHouse.domain.produto.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 import java.util.List;
 
 @Repository
