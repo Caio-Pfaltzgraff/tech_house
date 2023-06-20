@@ -18,7 +18,6 @@
     <table class="table table-bordered border-black table-hover">
       <thead class="table-dark border-secondary">
       <tr class="text-center">
-        <th scope="col">Id</th>
         <th scope="col">Nome</th>
         <th scope="col">Quantidade mínima</th>
         <th scope="col">Quantidade em estoque</th>
@@ -28,7 +27,6 @@
       </thead>
       <tbody>
       <tr th:each="produto : ${produtos}" class="text-center">
-        <th th:text="${produto.id}" scope="row">id</th>
         <td th:text="${produto.nome}">Nome</td>
         <td th:text="${produto.quantidadeMinima}">Quantidade Minima</td>
         <td th:text="${produto.quantidadeEstoque}">Quantidade em Estoque</td>

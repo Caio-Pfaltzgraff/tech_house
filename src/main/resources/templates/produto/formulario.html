@@ -13,33 +13,36 @@
             <div class="card-header text-bg-secondary text-center">
                 <h1>Cadastro de Produto</h1>
             </div>
-            <form th:object="${dadosCadastroProduto}" action="/produto/novo" method="post" class="card-body">
+            <form action="/produto" method="post" class="card-body">
+                <input type="hidden" name="_method" value="put" th:if="${produto != null}"/>
+                <input type="hidden" name="id" th:value="${produto?.id}" />
+
                 <div class="form-group mb-3">
-                    <label>Produto</label>
-                    <input th:field="*{nome}" placeholder="nome do produto" class="form-control"/>
+                    <label for="nome">Produto</label>
+                    <input id="nome" name="nome" th:value="${produto?.nome}" placeholder="nome do produto" class="form-control"/>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <label>Preço</label>
+                        <label for="preco">Preço</label>
                         <div class="input-group">
                             <div class="input-group-text">R$</div>
-                            <input th:field="*{preco}" type="number" step="0.01" min="0" class="form-control" placeholder="ex: 1500.35">
+                            <input id="preco" name="preco" th:value="${produto?.preco}" type="number" step="0.01" min="0" class="form-control" placeholder="ex: 1500.35">
                         </div>
                     </div>
                     <div class="col">
-                        <label>Quantidade Mínima</label>
-                        <input th:field="*{quantidadeMinima}" type="number" min="0" class="form-control" placeholder="mínima" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <label for="quantidadeMinima">Quantidade Mínima</label>
+                        <input id="quantidadeMinima" name="quantidadeMinima" th:value="${produto?.quantidadeMinima}" type="number" min="0" class="form-control" placeholder="mínima" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
                     <div class="col">
-                        <label>Quantidade Máxima</label>
-                        <input th:field="*{quantidadeMaxima}" type="number" min="0" class="form-control" placeholder="máxima" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <label for="quantidadeMaxima">Quantidade Máxima</label>
+                        <input id="quantidadeMaxima" name="quantidadeMaxima" th:value="${produto?.quantidadeMaxima}" type="number" min="0" class="form-control" placeholder="máxima" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-5">
-                        <label>Tipo de produto</label>
-                        <select th:field="*{tipo}" class="form-select">
-                            <option th:each="p : ${tipoProduto}" th:value="${p}" th:text="${p.getDescricao()}"></option>
+                        <label for="tipo">Tipo de produto</label>
+                        <select id="tipo" name="tipo" class="form-select">
+                            <option th:each="p : ${tipoProduto}" th:value="${p}" th:text="${p.getDescricao()}" th:selected="${p == produto?.tipo}"></option>
                         </select>
                     </div>
                 </div>

@@ -56,4 +56,12 @@ public class Produto {
     public void excluir() {
         this.ativo = false;
     }
+
+    public void atualizaDados(DadosAlteracaoProduto dados) {
+        this.nome = dados.nome();
+        this.preco = dados.preco();
+        this.quantidadeMinima = Integer.parseInt(dados.quantidadeMinima());
+        this.quantidadeMaxima = Integer.parseInt(dados.quantidadeMaxima());
+        this.tipo = dados.tipo();
+    }
 }
