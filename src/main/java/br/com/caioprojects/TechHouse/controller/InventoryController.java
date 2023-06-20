@@ -20,7 +20,7 @@ public class InventoryController {
 
     @GetMapping
     public String todosOsProdutos(Model model) {
-        List<DadosListagemProdutos> produtos = produtoRepository.findAll().stream().map(DadosListagemProdutos::new).toList();
+        List<DadosListagemProdutos> produtos = produtoRepository.findAllByAtivoTrue().stream().map(DadosListagemProdutos::new).toList();
         model.addAttribute("produtos", produtos);
         return "inventory";
     }

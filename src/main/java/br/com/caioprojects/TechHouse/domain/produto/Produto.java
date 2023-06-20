@@ -33,6 +33,8 @@ public class Produto {
     @Column(name = "tipo_do_produto")
     private TipoProduto tipo;
 
+    private Boolean ativo;
+
     public Produto(DadosCadastroProduto dados) {
         this.nome = dados.nome();
         this.preco = dados.preco();
@@ -40,6 +42,7 @@ public class Produto {
         this.quantidadeMinima = Integer.parseInt(dados.quantidadeMinima());
         this.quantidadeMaxima = Integer.parseInt(dados.quantidadeMaxima());
         this.tipo = dados.tipo();
+        this.ativo = true;
     }
 
     public void adicionaEstoque(Integer quantidade) {
@@ -48,5 +51,9 @@ public class Produto {
 
     public void saidaEstoque(Integer quantidade) {
         this.quantidadeEstoque -= quantidade;
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }

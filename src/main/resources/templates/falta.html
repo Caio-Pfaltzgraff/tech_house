@@ -6,11 +6,15 @@
 <header th:replace="~{base :: header}"></header>
 
 <div class="container">
-  <div class="p-1 bg-body-secondary rounded-3 d-flex justify-content-center mb-2">
+
+  <div class="p-1 bg-body-secondary rounded-3 d-flex justify-content-center mb-2" th:if="${produtos.size() > 0}">
     <h1 class="display-5" th:text="'Produtos em falta: ' + ${produtos.size()}">Produtos em falta</h1>
   </div>
+  <div class="p-1 bg-body-secondary rounded-3 d-flex justify-content-center mb-2" th:unless="${produtos.size() > 0}">
+    <h1 class="display-5">Nenhum Produto em Falta!</h1>
+  </div>
 
-  <div class="table-responsive">
+  <div class="table-responsive" th:if="${produtos.size() > 0}">
     <table class="table table-bordered border-black table-hover">
       <thead class="table-dark border-secondary">
       <tr class="text-center">
