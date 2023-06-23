@@ -1,22 +1,26 @@
-body{
-            font-family: 'Inter', sans-serif;
-        }
+* {
+    font-family: 'Inter', sans-serif;
+}
 
-        .logo-container {
-          background-color: #4e9ca4;
-          color: #FFF;
-        }
-        .logo {
-          font-family: 'Handlee', cursive;
-          font-size: 1.5rem;
-        }.text-light:hover {
-          border-bottom: 1px solid white;
-          opacity: 0.8;
-        }
-        .inventario{
-          font-family: 'Bruno Ace SC', cursive;
-        }
+.bg-custom {
+    background-color: #f8f9fa;
+}
 
-        .table-hover tbody tr:hover {
-          background-color: #F2F2F2;
-        }
+.logo-container {
+  background-color: #4e9ca4;
+  color: #FFF;
+}
+.logo {
+  font-family: 'Handlee', cursive;
+}
+.text-light:hover {
+  border-bottom: 1px solid white;
+  opacity: 0.8;
+}
+.inventario{
+  font-family: 'Bruno Ace SC', cursive;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #F2F2F2;
+}

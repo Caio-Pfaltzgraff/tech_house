@@ -12,16 +12,18 @@
 
 <header th:fragment="header">
   <div th:fragment="logo" class="logo-container mb-0 p-2 d-flex justify-content-between">
-    <span class="logo mt-2">Tech House</span>
+    <span class="logo fs-3 mt-1">Tech House</span>
     <span class="inventario fs-2">Inventory</span>
-    <span class="mt-2">logout</span>
+    <span class="mt-2 fw-medium">logout</span>
   </div>
 
-  <nav th:fragment="navbar" class="navbar bg-body-tertiary d-flex justify-content-around mb-2 p-2 ">
-    <a href="/inventory" class="nav-item mt-1 mb-1"><button class="btn btn-secondary btn-sm">Todos os Produtos</button></a>
-    <a href="/inventory/produtos-em-falta" class="nav-item mt-1 mb-1"><button class="btn btn-danger btn-sm">Produtos em Falta</button></a>
-    <a href="/produto/formulario" class="nav-item mt-1 mb-1"><button class="btn btn-success btn-sm">Novo Produto</button></a>
-    <a href="#" class="nav-item mt-1 mb-1"><button class="btn btn-primary btn-sm">Baixas</button></a>
-    <a href="/acao/entrada" class="nav-item mt-1 mb-1"><button class="btn btn-warning btn-sm">Entradas</button></a>
+  <nav th:fragment="navbar" class="navbar navbar-expand-lg d-flex justify-content-around mb-2 p-2 ">
+    <div class="container-fluid">
+      <div class="container d-flex p-0 justify-content-between">
+        <a href="/inventory" class="nav-item nav-link link-secondary fw-bold mt-1 mb-1">Produtos</a>
+        <a href="/acao/saida" class="nav-item nav-link link-secondary fw-bold mt-1 mb-1">Saídas</a>
+        <a href="/acao/entrada" class="nav-item nav-link link-secondary fw-bold mt-1 mb-1">Entradas</a>
+      </div>
+    </div>
   </nav>
 </header>
