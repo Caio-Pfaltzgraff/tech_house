@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{base :: head('Cadastro de Produto')}"></head>
-<body>
+<body class="bg-custom">
 
     <header>
         <div th:replace="~{base :: logo}"></div>
@@ -13,7 +13,7 @@
             <div class="card-header text-bg-secondary text-center">
                 <h1>Cadastro de Produto</h1>
             </div>
-            <form action="/produto" method="post" class="card-body">
+            <form action="/produto" method="post" class="card-body bg-custom">
                 <input type="hidden" name="_method" value="put" th:if="${produto != null}"/>
                 <input type="hidden" name="id" th:value="${produto?.id}" />
 

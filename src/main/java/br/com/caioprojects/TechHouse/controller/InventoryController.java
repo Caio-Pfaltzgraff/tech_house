@@ -1,8 +1,7 @@
 package br.com.caioprojects.TechHouse.controller;
 
-import br.com.caioprojects.TechHouse.domain.produto.DadosProdutosEmFalta;
 import br.com.caioprojects.TechHouse.domain.produto.DadosListagemProdutos;
-import br.com.caioprojects.TechHouse.domain.produto.Produto;
+import br.com.caioprojects.TechHouse.domain.produto.DadosProdutosEmFalta;
 import br.com.caioprojects.TechHouse.domain.produto.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

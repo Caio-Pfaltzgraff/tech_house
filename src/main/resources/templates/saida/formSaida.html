@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{base :: head('Saída')}"></head>
-<body>
+<body class="bg-custom">
 
     <header>
         <div th:replace="~{base :: logo}"></div>
@@ -12,7 +12,7 @@
             <div class="card-header text-bg-secondary text-center">
                 <h1>Saída de Produtos</h1>
             </div>
-            <form class="card-body mt-1" method="post" action="/acao/salva">
+            <form class="card-body mt-1 bg-custom" method="post" action="/acao/salva">
                 <div class="row">
                     <div class="col-md-6">
                         <label for="data" class="control-label">Data</label>
@@ -52,7 +52,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="card text-center p-2 rounded-4" th:unless="${verifica}">
+                    <div class="card text-center p-2 rounded-4 bg-custom" th:unless="${verifica}">
                         <h2>Nenhum produto foi adicionado!</h2>
                     </div>
                 </div>

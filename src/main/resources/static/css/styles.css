@@ -7,7 +7,8 @@
 }
 
 .logo-container {
-  background-color: #4e9ca4;
+  background: rgb(22,9,240);
+  background: linear-gradient(0deg, rgba(22,9,240,1) 0%, rgba(49,110,244,1) 100%);
   color: #FFF;
 }
 .logo {
