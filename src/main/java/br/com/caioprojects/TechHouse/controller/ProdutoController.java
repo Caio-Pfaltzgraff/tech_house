@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/produto")
@@ -16,6 +17,27 @@ public class ProdutoController {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @GetMapping("/inventory")
+    public String todosOsProdutos(Model model) {
+        List<DadosListagemProdutos> produtos = produtoRepository.findAllByAtivoTrue().stream().map(DadosListagemProdutos::new).toList();
+        model.addAttribute("produtos", produtos);
+
+        var qtdProdutos = 0;
+        for (DadosListagemProdutos produto : produtos) {
+            qtdProdutos += produto.quantidadeEstoque();
+        }
+        model.addAttribute("quantidade", qtdProdutos);
+
+        return "inventory";
+    }
+
+    @GetMapping("/em-falta")
+    public String produtosEmFalta(Model model) {
+        List<DadosProdutosEmFalta> produtos = produtoRepository.findAllByQuantidadeEstoqueLessThanQuantidadeMinima().stream().map(DadosProdutosEmFalta::new).toList();
+        model.addAttribute("produtos", produtos);
+        return "falta";
+    }
 
     @GetMapping("/formulario")
     public String formulario(Long id, Model model) {
@@ -35,7 +57,7 @@ public class ProdutoController {
     public String novo(@Valid DadosCadastroProduto dados) {
         produtoRepository.save(new Produto(dados));
 
-        return "redirect:/inventory";
+        return "redirect:/produto/inventory";
     }
 
     @PutMapping
@@ -44,7 +66,7 @@ public class ProdutoController {
         var produto = produtoRepository.getReferenceById(dados.id());
         produto.atualizaDados(dados);
 
-        return "redirect:/inventory";
+        return "redirect:/produto/inventory";
     }
 
     @DeleteMapping
@@ -53,7 +75,7 @@ public class ProdutoController {
         var produto = produtoRepository.getReferenceById(id);
         produto.excluir();
 
-        return "redirect:/inventory";
+        return "redirect:/produto/inventory";
     }
 
 }

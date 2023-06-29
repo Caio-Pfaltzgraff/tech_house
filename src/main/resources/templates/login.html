@@ -3,15 +3,28 @@
 <head th:replace="~{base :: head('login')}"></head>
 <body class="bg-custom">
     <header>
-        <nav th:fragment="logo" class="navbar navbar logo-container p-2 d-flex justify-content-between row">
-            <div class="container-fluid gap-3">
-                <span  class="logo fs-3 mt-1 text-light">Tech House</span>
-                <span class="logo fs-3 mt-1 text-light">Inventário</span>
+        <nav class="navbar logo-container  d-flex justify-content-between">
+            <div class="container-fluid">
+                <span  class="logo fs-3">Tech House</span>
+                <span class="logo fs-3">Seja Bem-vindo!</span>
             </div>
         </nav>
     </header>
-    <div class="container">
+   <main class="container">
+       <div class="card mt-5 p-3 mx-lg-5 mx-md-5">
+           <h3 class="card-title text-center mt-2 mb-2 fw-semibold">Login</h3>
+           <form id="login-form" method="post">
+               <label for="username" class="form-label text-center fw-medium">Usuário</label>
+               <input id="username" name="username" type="text" class="form-control"/>
 
-    </div>
+               <label for="password" class="form-label mt-4 fw-medium">Senha</label>
+               <input id="password" name="password" type="password" class="form-control"/>
+
+               <div class="d-flex justify-content-center">
+                   <button class="btn btn-primary mt-4 mb-2 fw-medium" type="submit">Entrar</button>
+               </div>
+           </form>
+       </div>
+   </main>
 </body>
 </html>

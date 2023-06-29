@@ -11,28 +11,23 @@
 </head>
 
 <header th:fragment="header">
-  <nav th:fragment="logo" class="navbar navbar logo-container p-2 d-flex justify-content-between row">
-    <div class="container-fluid gap-3">
-      <a href="/inventory" class="logo fs-3 mt-1 link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover">Tech House</a>
-      <a href="/inventory" class="nav-item nav-link link-white fw-bold mt-1 mb-1">Produtos</a>
-      <a href="/acao/saida" class="nav-item nav-link link-white fw-bold mt-1 mb-1">Saídas</a>
-      <a href="/acao/entrada" class="nav-item nav-link link-white fw-bold mt-1 mb-1">Entradas</a>
-      <a href="#" class="text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="26" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-          <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-        </svg>
-      </a>
+  <nav th:fragment="logo" class="navbar navbar-expand-md logo-container">
+    <div class="container-fluid gap-lg-5 gap-md-5 gap-sm-0">
+      <a class="navbar-brand logo fs-3 link-light" href="/produto/inventory">Tech House</a>
+      <button class="navbar-toggler navbar-dark border-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse flex-row justify-content-between ms-lg-5" id="navbarNav">
+        <a href="/produto/inventory" class="nav-link text-white fw-bold" aria-current="page">Produtos</a>
+        <a href="/acao/saida" class="nav-link text-white fw-bold">Saídas</a>
+        <a href="/acao/entrada" class="nav-link text-white fw-bold">Entradas</a>
+        <a href="#" class="text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="26" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+            <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </nav>
-
-<!--  <nav th:fragment="navbar" class="navbar navbar-expand-lg d-flex justify-content-around mb-2 p-2 ">-->
-<!--    <div class="container-fluid">-->
-<!--      <div class="container d-flex p-0 justify-content-between">-->
-<!--        <a href="/inventory" class="nav-item nav-link link-secondary fw-bold mt-1 mb-1">Produtos</a>-->
-<!--        <a href="/acao/saida" class="nav-item nav-link link-secondary fw-bold mt-1 mb-1">Saídas</a>-->
-<!--        <a href="/acao/entrada" class="nav-item nav-link link-secondary fw-bold mt-1 mb-1">Entradas</a>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </nav>-->
 </header>

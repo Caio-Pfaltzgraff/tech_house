@@ -94,7 +94,7 @@ public class MovimentoController {
         this.entradaProdutoService.getMovimento().getItensMovimento().clear();
         this.saidaProdutoService.getMovimento().getItensMovimento().clear();
 
-        return "redirect:/inventory";
+        return "redirect:/produto/inventory";
     }
 
     @GetMapping("/removeProdutos")
