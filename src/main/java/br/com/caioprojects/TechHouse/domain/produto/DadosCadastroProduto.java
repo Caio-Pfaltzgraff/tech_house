@@ -1,6 +1,5 @@
 package br.com.caioprojects.TechHouse.domain.produto;
 
-import br.com.caioprojects.TechHouse.domain.produto.TipoProduto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;

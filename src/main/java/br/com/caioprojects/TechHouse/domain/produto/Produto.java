@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class Produto {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String nome;
 
@@ -42,7 +42,7 @@ public class Produto {
         this.quantidadeMinima = Integer.parseInt(dados.quantidadeMinima());
         this.quantidadeMaxima = Integer.parseInt(dados.quantidadeMaxima());
         this.tipo = dados.tipo();
-        this.ativo = true;
+        this.ativo = Boolean.TRUE;
     }
 
     public void adicionaEstoque(Integer quantidade) {

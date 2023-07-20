@@ -1,8 +1,5 @@
 package br.com.caioprojects.TechHouse.domain.produto;
 
-import br.com.caioprojects.TechHouse.domain.produto.Produto;
-import br.com.caioprojects.TechHouse.domain.produto.TipoProduto;
-
 import java.math.BigDecimal;
 
 public record DadosListagemProdutos(Long id, String nome, TipoProduto tipo, BigDecimal preco, Integer quantidadeEstoque) {

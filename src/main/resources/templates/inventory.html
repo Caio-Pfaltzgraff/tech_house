@@ -7,7 +7,8 @@
 
     <div class="container">
         <div class="p-1 bg-body-secondary rounded-3 d-flex justify-content-center mb-2 mt-4">
-            <h1 class="display-5 fw-medium" th:text="'Produtos em Estoque: ' + ${quantidade}">Produtos em Estoque</h1>
+            <h1 th:if="${quantidade >= 0}" class="display-5 fw-medium" th:text="'Produtos em Estoque: ' + ${quantidade}">Produtos em Estoque</h1>
+            <h1 class="display-5 fw-medium" th:unless="${quantidade != -1}">Produtos Buscados</h1>
         </div>
 
         <div class="d-flex justify-content-between mt-3 mb-3">
@@ -15,8 +16,8 @@
                 <a href="/produto/em-falta" class="nav-item mt-1 fw-bold link-secondary text-decoration-none">Produtos em Falta</a>
                 <a href="/produto/formulario" class="mx-3 nav-item mt-1 fw-bold link-secondary text-decoration-none">Novo Produto</a>
             </div>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Buscar Produto" aria-label="Search">
+            <form action="/produto/buscas" method="post" class="d-flex" role="search">
+                <input id="pesquisa" name="pesquisa" class="form-control me-2" type="search" placeholder="Buscar Produto" aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -25,7 +26,10 @@
             </form>
         </div>
 
-        <div class="table-responsive">
+        <div th:if="${produtos.isEmpty()}" class="text-center mt-5">
+            <h2 class="display-5">Nenhum Produto Encontrado!</h2>
+        </div>
+        <div th:unless="${produtos.isEmpty()}" class="table-responsive">
             <table class="table table-bordered border-black table-hover">
                 <thead class="table-dark border-secondary">
                 <tr class="text-center fw-bold">

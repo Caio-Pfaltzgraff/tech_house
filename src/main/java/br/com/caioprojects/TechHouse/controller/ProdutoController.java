@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -76,6 +77,16 @@ public class ProdutoController {
         produto.excluir();
 
         return "redirect:/produto/inventory";
+    }
+
+    @PostMapping("/buscas")
+    public String pesquisaProdutos(String pesquisa, Model model) {
+        var produtos = produtoRepository.findAllByAtivoTrue().stream().map(DadosListagemProdutos::new).toList();
+
+        model.addAttribute("produtos", new PesquisaProduto(produtos, pesquisa).realizarPesquisa());
+        model.addAttribute("quantidade", -1);
+
+        return "inventory";
     }
 
 }
