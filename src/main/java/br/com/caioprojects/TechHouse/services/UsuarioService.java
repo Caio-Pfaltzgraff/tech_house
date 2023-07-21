@@ -1,4 +1,4 @@
-package br.com.caioprojects.TechHouse.security;
+package br.com.caioprojects.TechHouse.services;
 
 import br.com.caioprojects.TechHouse.domain.usuarios.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +8,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AutenticacaoService implements UserDetailsService {
-
+public class UsuarioService implements UserDetailsService {
     @Autowired
     private UsuarioRepository usuarioRepository;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

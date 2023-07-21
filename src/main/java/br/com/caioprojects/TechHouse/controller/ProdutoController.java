@@ -1,87 +1,72 @@
 package br.com.caioprojects.TechHouse.controller;
 
-import br.com.caioprojects.TechHouse.domain.produto.*;
+import br.com.caioprojects.TechHouse.domain.produto.DadosAlteracaoProduto;
+import br.com.caioprojects.TechHouse.domain.produto.DadosCadastroProduto;
+import br.com.caioprojects.TechHouse.domain.produto.PesquisaProduto;
+import br.com.caioprojects.TechHouse.domain.produto.Produto;
+import br.com.caioprojects.TechHouse.services.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Controller
 @RequestMapping("/produto")
 public class ProdutoController {
 
     @Autowired
-    private ProdutoRepository produtoRepository;
+    private ProdutoService produtoService;
 
     @GetMapping("/inventory")
     public String todosOsProdutos(Model model) {
-        List<DadosListagemProdutos> produtos = produtoRepository.findAllByAtivoTrue().stream().map(DadosListagemProdutos::new).toList();
-        model.addAttribute("produtos", produtos);
-
-        var qtdProdutos = 0;
-        for (DadosListagemProdutos produto : produtos) {
-            qtdProdutos += produto.quantidadeEstoque();
-        }
-        model.addAttribute("quantidade", qtdProdutos);
+        model.addAttribute("produtos", produtoService.findAll());
+        model.addAttribute("quantidade", produtoService.quantidadeProdutos());
 
         return "inventory";
     }
 
     @GetMapping("/em-falta")
     public String produtosEmFalta(Model model) {
-        List<DadosProdutosEmFalta> produtos = produtoRepository.findAllByQuantidadeEstoqueLessThanQuantidadeMinima().stream().map(DadosProdutosEmFalta::new).toList();
-        model.addAttribute("produtos", produtos);
+        model.addAttribute("produtos", produtoService.findAllByQuantidadeEstoqueLessThanQuantidadeMinima());
         return "falta";
     }
 
     @GetMapping("/formulario")
     public String formulario(Long id, Model model) {
         if (id != null) {
-            var produto = produtoRepository.getReferenceById(id);
-            model.addAttribute("produto", produto);
+            model.addAttribute("produto", produtoService.getReferenceById(id));
         }
 
-        var tipoProduto = Arrays.stream(TipoProduto.values()).toList();
-        model.addAttribute("tipoProduto", tipoProduto);
+        model.addAttribute("tipoProduto", produtoService.tipoProdutos());
 
         return "produto/formulario";
     }
 
     @PostMapping
-    @Transactional
     public String novo(@Valid DadosCadastroProduto dados) {
-        produtoRepository.save(new Produto(dados));
+        produtoService.save(new Produto(dados));
 
         return "redirect:/produto/inventory";
     }
 
     @PutMapping
-    @Transactional
     public String alteraProduto(DadosAlteracaoProduto dados) {
-        var produto = produtoRepository.getReferenceById(dados.id());
-        produto.atualizaDados(dados);
+        produtoService.atualiza(dados);
 
         return "redirect:/produto/inventory";
     }
 
     @DeleteMapping
-    @Transactional
     public String removeProduto(Long id) {
-        var produto = produtoRepository.getReferenceById(id);
-        produto.excluir();
+        produtoService.delete(id);
 
         return "redirect:/produto/inventory";
     }
 
     @PostMapping("/buscas")
     public String pesquisaProdutos(String pesquisa, Model model) {
-        var produtos = produtoRepository.findAllByAtivoTrue().stream().map(DadosListagemProdutos::new).toList();
+        var produtos = produtoService.findAll();
 
         model.addAttribute("produtos", new PesquisaProduto(produtos, pesquisa).realizarPesquisa());
         model.addAttribute("quantidade", -1);

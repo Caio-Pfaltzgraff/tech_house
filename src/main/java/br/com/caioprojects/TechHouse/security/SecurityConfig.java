@@ -1,5 +1,6 @@
 package br.com.caioprojects.TechHouse.security;
 
+import br.com.caioprojects.TechHouse.services.UsuarioService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -32,7 +33,7 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new AutenticacaoService();
+        return new UsuarioService();
     }
 
     @Bean
