@@ -1,33 +1,23 @@
 package br.com.caioprojects.TechHouse.controller;
 
-import br.com.caioprojects.TechHouse.domain.movimento.*;
-import br.com.caioprojects.TechHouse.domain.produto.Produto;
-import br.com.caioprojects.TechHouse.domain.produto.ProdutoRepository;
+import br.com.caioprojects.TechHouse.domain.movimento.EntradaProdutoService;
+import br.com.caioprojects.TechHouse.services.MovimentoService;
+import br.com.caioprojects.TechHouse.domain.movimento.SaidaProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 @Controller
 @RequestMapping("/acao")
 public class MovimentoController {
 
     @Autowired
-    private ProdutoRepository produtoRepository;
-
-    @Autowired
-    private MovimentoRepository movimentoRepository;
-
-    @Autowired
-    private ItemMovimentoRepository itemMovimentoRepository;
+    private MovimentoService movimentoService;
 
     @Autowired
     private EntradaProdutoService entradaProdutoService;
@@ -69,22 +59,14 @@ public class MovimentoController {
 
     @GetMapping("entrada/produto/formulario")
     public String carregaFormularioProduto(Model model) {
-        var produtos = produtoRepository.findAll().stream().sorted(Comparator.comparing(Produto::getNome)).toList();
-        model.addAttribute("produtos", produtos);
+       model.addAttribute("produtos", movimentoService.buscaProdutosEntrada());
 
         return "entrada/formProduto";
     }
 
     @GetMapping("saida/produto/formulario")
     public String carregaFormularioProdutoSaida(Model model) {
-        var listaProdutos = produtoRepository.findAll().stream().sorted(Comparator.comparing(Produto::getNome)).toList();
-        List<Produto> produtos = new ArrayList<>();
-        for (Produto produto : listaProdutos) {
-            if (produto.getQuantidadeEstoque() > 0) {
-                produtos.add(produto);
-            }
-        }
-        model.addAttribute("produtos", produtos);
+        model.addAttribute("produtos", movimentoService.buscaProdutosSaida());
 
         return "saida/formProdutoSaida";
     }
@@ -106,33 +88,17 @@ public class MovimentoController {
     }
 
     @PostMapping("/salvar")
-    @Transactional
     public  String salvaEntrada(LocalDate data) {
         var entrada = entradaProdutoService.criaEntrada(data);
-        movimentoRepository.save(entrada);
-
-        for (ItemMovimento item : entrada.getItensMovimento()) {
-            item.getId().setNumeroMovimento(entrada.getNumero());
-            itemMovimentoRepository.save(item);
-            var produto = produtoRepository.getReferenceById(item.getProduto().getId());
-            produto.adicionaEstoque(item.getQuantidade());
-        }
+        movimentoService.save(entrada);
 
         return "redirect:/acao/inventory";
     }
 
     @PostMapping("/salva")
-    @Transactional
     public  String salvaSaida() {
         var saida = saidaProdutoService.criaSaida();
-        movimentoRepository.save(saida);
-
-        for (ItemMovimento item : saida.getItensMovimento()) {
-            item.getId().setNumeroMovimento(saida.getNumero());
-            itemMovimentoRepository.save(item);
-            var produto = produtoRepository.getReferenceById(item.getProduto().getId());
-            produto.saidaEstoque(item.getQuantidade());
-        }
+        movimentoService.save(saida);
 
         return "redirect:/acao/inventory";
     }
